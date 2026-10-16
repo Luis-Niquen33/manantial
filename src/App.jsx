@@ -154,6 +154,10 @@ function Icon({ name, size = 20 }) {
     arrow: <><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></>,
     chevron: <path d="m9 18 6-6-6-6" />,
     check: <path d="m5 12 4 4L19 6" />,
+    mic: <><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8" /></>,
+    guitar: <><path d="m14 10 7-7M18.5 3.5l2 2" /><path d="M10.5 9.5c-1.5-1.5-4.4-1.2-5.9.6-1 1.2-.8 2.5-1.8 3.4-1.2 1-1.9 2.6-.8 4.1l3.9 3.9c1.5 1.1 3.1.4 4.1-.8.9-1 2.2-.8 3.4-1.8 1.8-1.5 2.1-4.4.6-5.9Z" /><circle cx="9" cy="15" r="1.5" /></>,
+    keys: <><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M7 13v7M12 13v7M17 13v7" /><path d="M5.8 4h2.4v9H5.8zM10.8 4h2.4v9h-2.4zM15.8 4h2.4v9h-2.4z" /></>,
+    drum: <><ellipse cx="12" cy="9" rx="8" ry="3" /><path d="M4 9v7c0 1.7 3.6 3 8 3s8-1.3 8-3V9" /><path d="m4 3 6 4.5M20 3l-6 4.5" /></>,
     music: <><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></>,
     sparkles: <><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z" /><path d="m19 14 .9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14Z" /></>,
     heart: <path d="M20.8 8.8c0 5.2-8.8 10.2-8.8 10.2S3.2 14 3.2 8.8a4.3 4.3 0 0 1 8.8-1.2 4.3 4.3 0 0 1 8.8 1.2Z" />,
@@ -204,6 +208,23 @@ function Celebration() {
     </div>
   );
 }
+
+// Pentagrama y notas que flotan en la tarjeta principal de la edición de Música y Alabanza.
+function MusicDecor() {
+  return (
+    <div className="music-decor" aria-hidden="true">
+      <span className="music-staff"><i /><i /><i /><i /><i /></span>
+      {["♪", "♫", "♬", "♩", "♪", "♫"].map((note, index) => <span key={index} className="music-note">{note}</span>)}
+    </div>
+  );
+}
+
+const MINISTRY_INSTRUMENTS = [
+  { icon: "mic", label: "Voces" },
+  { icon: "guitar", label: "Cuerdas" },
+  { icon: "keys", label: "Teclas" },
+  { icon: "drum", label: "Ritmo" },
+];
 
 function pendingDevotional(day) {
   const reading = DAYS[day - 1].reading;
@@ -370,13 +391,21 @@ function App() {
     if (theme) root.dataset.theme = theme;
     else delete root.dataset.theme;
     writeStored("manantial:theme", theme);
-    const dark = theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? "#0e1613" : "#f6f3ec");
   }, [theme]);
 
   useEffect(() => {
     if (edition) writeStored("manantial:edition-choice", edition);
+    // La edición de Ministerios de Música y Alabanza tiene su propia paleta (ver styles.css).
+    const root = document.documentElement;
+    if (edition === "musicos") root.dataset.edition = "musicos";
+    else delete root.dataset.edition;
   }, [edition]);
+
+  useEffect(() => {
+    const dark = theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const colors = edition === "musicos" ? ["#110c17", "#f5f1f8"] : ["#0e1613", "#f6f3ec"];
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? colors[0] : colors[1]);
+  }, [edition, theme]);
 
   useEffect(() => { writeStored("manantial:text-scale", textScale); }, [textScale]);
 
@@ -614,6 +643,7 @@ function App() {
         {section === "hoy" && (
           <div className="page-content" key="hoy">
             <section className="hero-card">
+              {activeEdition === "musicos" && <MusicDecor />}
               <div className="hero-copy">
                 <div className="eyebrow light"><span className="eyebrow-line" /> {getGreeting()}{firstName && `, ${firstName}`}</div>
                 <h1>{activeEdition === "musicos" ? <>Antes de cantar para otros, <em>canta para Él.</em></> : <>Antes que el mundo te hable, <em>escucha a Dios.</em></>}</h1>
@@ -622,6 +652,11 @@ function App() {
                   <div><Icon name="flame" size={16} /><strong>{streak}</strong><span>{streak === 1 ? "día seguido" : "días seguidos"}</span></div>
                   <div><Icon name="target" size={16} /><strong>{remainingWeek}/7</strong><span>esta semana</span></div>
                 </div>
+                {activeEdition === "musicos" && (
+                  <ul className="ministry-instruments" aria-label="Ministerios de Música y Alabanza">
+                    {MINISTRY_INSTRUMENTS.map((item) => <li key={item.icon}><Icon name={item.icon} size={15} />{item.label}</li>)}
+                  </ul>
+                )}
               </div>
               <ProgressRing value={progress}><strong>{progress}%</strong><span>del año</span></ProgressRing>
             </section>
@@ -653,7 +688,7 @@ function App() {
 
             <article className={`devotional-card ${generation === "loading" ? "is-loading" : ""}`} style={{ "--reading-scale": textScale }} key={day}>
               <div className="card-topline">
-                <span className="card-category"><Icon name="sparkles" size={15} /> Reflexión del día</span>
+                <span className="card-category">{activeEdition === "musicos" ? <><Icon name="music" size={15} /> Reflexión para el ministerio</> : <><Icon name="sparkles" size={15} /> Reflexión del día</>}</span>
                 <div className="card-tools">
                   <span className={`generated-badge ${generation === "daily" || generation === "ai" ? "ai-badge" : ""}`}><i />{generation === "loading" ? "Preparando…" : generation === "daily" ? (day > todayDay ? `Vista previa · se publica el ${formatUnlockDate(day)}` : `Devocional del día ${day}`) : generation === "ai" ? "Creado con IA" : "Próximamente"}</span>
                   <div className="text-size" role="group" aria-label="Tamaño del texto">

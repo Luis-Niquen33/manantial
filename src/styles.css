@@ -96,6 +96,70 @@
   color-scheme: dark;
 }
 
+/* ───── Edición Ministerios de Música y Alabanza: violeta y rosa ───── */
+:root[data-edition="musicos"] {
+  --bg: #f5f1f8;
+  --bg-soft: #ece4f3;
+  --surface: #ffffff;
+  --surface-2: #faf7fc;
+  --ink: #231a2e;
+  --ink-2: #4f4560;
+  --muted: #7e7490;
+  --line: #e4dcec;
+  --line-soft: #efe9f4;
+  --primary: #5b2d8e;
+  --primary-strong: #45206e;
+  --primary-soft: #ede3f7;
+  --gold: #c2457a;
+  --gold-bright: #f4a3c4;
+  --gold-soft: #fbe5ee;
+  --hero-from: #24113d;
+  --hero-to: #6a2f9e;
+  --shadow-lg: 0 24px 60px rgba(46, 20, 80, .28);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-edition="musicos"]:not([data-theme="light"]) {
+    --bg: #110c17;
+    --bg-soft: #191221;
+    --surface: #1b1425;
+    --surface-2: #22192e;
+    --ink: #ece6f3;
+    --ink-2: #c4b9d3;
+    --muted: #958aa6;
+    --line: #31273f;
+    --line-soft: #281f34;
+    --primary: #b892f2;
+    --primary-strong: #cdb0f8;
+    --primary-soft: #2e2146;
+    --on-primary: #160e22;
+    --gold: #f08bb0;
+    --gold-bright: #f7b3cd;
+    --gold-soft: #3a1d2b;
+    --hero-from: #1c0e30;
+    --hero-to: #4b2378;
+  }
+}
+:root[data-edition="musicos"][data-theme="dark"] {
+  --bg: #110c17;
+  --bg-soft: #191221;
+  --surface: #1b1425;
+  --surface-2: #22192e;
+  --ink: #ece6f3;
+  --ink-2: #c4b9d3;
+  --muted: #958aa6;
+  --line: #31273f;
+  --line-soft: #281f34;
+  --primary: #b892f2;
+  --primary-strong: #cdb0f8;
+  --primary-soft: #2e2146;
+  --on-primary: #160e22;
+  --gold: #f08bb0;
+  --gold-bright: #f7b3cd;
+  --gold-soft: #3a1d2b;
+  --hero-from: #1c0e30;
+  --hero-to: #4b2378;
+}
+
 /* ───────────── Base ───────────── */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -394,6 +458,29 @@ kbd { display: inline-grid; min-width: 24px; height: 22px; place-items: center; 
 .mobile-nav { display: none; }
 .edition-switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 18px; color: var(--muted); font-size: 13px; font-weight: 600; }
 .edition-switch .segmented button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-align: center; line-height: 1.25; }
+/* Detalles visuales de la edición de Música y Alabanza */
+:root[data-edition="musicos"] .brand-mark span { background: linear-gradient(160deg, #f9c2d8, #d8578f); }
+:root[data-edition="musicos"] .journey-card::after { background: radial-gradient(circle, rgba(244,163,196,.4), transparent 70%); }
+:root[data-edition="musicos"] .hero-card { background: radial-gradient(circle at 85% 20%, rgba(244,130,180,.32), transparent 45%), radial-gradient(circle at 8% 110%, rgba(150,120,255,.28), transparent 45%), linear-gradient(140deg, var(--hero-to), var(--hero-from)); }
+:root[data-edition="musicos"] .hero-card h1 em, :root[data-edition="musicos"] .hero-stats svg { color: var(--gold-bright); }
+:root[data-edition="musicos"] .devotional-card { position: relative; overflow: hidden; }
+:root[data-edition="musicos"] .devotional-card::before { content: ""; position: absolute; top: 0; right: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--gold), var(--gold-bright)); }
+:root[data-edition="musicos"] .devotional-card::after { content: "♫"; position: absolute; top: 6px; right: 22px; color: var(--primary); font-family: var(--serif); font-size: 96px; line-height: 1; opacity: .07; pointer-events: none; }
+.music-decor { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.music-staff { position: absolute; top: 50%; left: -5%; display: grid; gap: 9px; width: 110%; transform: translateY(-50%) rotate(-6deg); opacity: .14; }
+.music-staff i { display: block; height: 1.5px; background: #fff; }
+.music-note { position: absolute; color: #fff; font-family: var(--serif); line-height: 1; opacity: .22; animation: note-float 7s ease-in-out infinite; }
+.music-note:nth-of-type(1) { top: 12%; left: 46%; font-size: 30px; }
+.music-note:nth-of-type(2) { top: 58%; left: 58%; font-size: 40px; color: var(--gold-bright); opacity: .35; animation-delay: -1.2s; }
+.music-note:nth-of-type(3) { top: 18%; left: 72%; font-size: 26px; animation-delay: -2.4s; }
+.music-note:nth-of-type(4) { top: 70%; left: 36%; font-size: 24px; animation-delay: -3.6s; }
+.music-note:nth-of-type(5) { top: 8%; left: 90%; font-size: 22px; color: var(--gold-bright); opacity: .3; animation-delay: -4.8s; }
+.music-note:nth-of-type(6) { top: 76%; left: 84%; font-size: 30px; animation-delay: -6s; }
+@keyframes note-float { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-10px) rotate(6deg); } }
+.ministry-instruments { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
+.ministry-instruments li { display: flex; align-items: center; gap: 6px; padding: 6px 11px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; color: rgba(255,255,255,.88); background: rgba(255,255,255,.07); font-size: 12px; font-weight: 600; }
+.ministry-instruments svg { color: var(--gold-bright); }
+
 .edition-choices { display: grid; gap: 12px; }
 .edition-choice { display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; color: var(--ink); background: var(--surface-2); cursor: pointer; text-align: left; transition: border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease); }
 .edition-choice:hover, .edition-choice:focus-visible { border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent); transform: translateY(-2px); outline: none; }
@@ -403,6 +490,12 @@ kbd { display: inline-grid; min-width: 24px; height: 22px; place-items: center; 
 .edition-choice-copy small { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
 .edition-choice-arrow { color: var(--primary); font-size: 20px; transition: transform .2s var(--ease); }
 .edition-choice:hover .edition-choice-arrow { transform: translateX(4px); }
+/* La tarjeta de Música y Alabanza ya muestra su paleta violeta en la bienvenida */
+.edition-choice.musicos { position: relative; overflow: hidden; border-color: color-mix(in srgb, #7b3fc0 30%, var(--line)); background: linear-gradient(135deg, color-mix(in srgb, #7b3fc0 10%, var(--surface-2)), color-mix(in srgb, #d8578f 10%, var(--surface-2))); }
+.edition-choice.musicos .edition-choice-icon { color: #fff; background: linear-gradient(145deg, #7b3fc0, #d8578f); }
+.edition-choice.musicos .edition-choice-arrow { color: #b0408a; }
+.edition-choice.musicos:hover, .edition-choice.musicos:focus-visible { border-color: #9a4fd6; box-shadow: 0 0 0 4px rgba(154, 79, 214, .16); }
+.edition-choice-notes { position: absolute; right: 44px; bottom: -6px; color: #9a4fd6; font-family: var(--serif); font-size: 44px; letter-spacing: 6px; opacity: .14; pointer-events: none; }
 .app-footer { padding: 28px 16px 32px; color: var(--muted); font-size: 12.5px; text-align: center; }
 .app-footer strong { color: var(--ink-2); font-weight: 600; }
 .sync-warning { margin: 14px auto 0; width: min(860px, calc(100% - 96px)); padding: 12px 16px; border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent); border-radius: 12px; color: var(--danger); background: var(--danger-soft); font-size: 14px; animation: rise .3s var(--ease); }

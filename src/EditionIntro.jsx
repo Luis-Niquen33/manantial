@@ -31,7 +31,8 @@ export default function EditionIntro({ onSelect }) {
           <p className="auth-intro">Elige la edición del devocional. Las dos siguen el mismo plan de lectura de la Biblia.</p>
           <div className="edition-choices">
             {EDITIONS.map((item) => (
-              <button key={item.id} type="button" className="edition-choice" onClick={() => onSelect(item.id)}>
+              <button key={item.id} type="button" className={`edition-choice ${item.id}`} onClick={() => onSelect(item.id)}>
+                {item.id === "musicos" && <span className="edition-choice-notes" aria-hidden="true">♪♫♬</span>}
                 <span className="edition-choice-icon">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{ICONS[item.id]}</svg>
                 </span>

@@ -741,6 +741,7 @@ function App() {
         {section === "grupo" && user.role === "admin" && <AdminGroups onError={setSyncError} />}
         {section === "usuarios" && user.role === "admin" && <AdminUsers />}
         {section === "users" && user.role !== "admin" && <MyGroup user={user} />}
+        <footer className="app-footer">© {new Date().getFullYear()} Manantial · Todos los derechos reservados · <strong>@luisniquen</strong></footer>
       </main>
 
       <nav className="mobile-nav" aria-label="Navegación inferior">

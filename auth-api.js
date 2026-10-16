@@ -5,7 +5,7 @@ import { dirname, resolve } from "node:path";
 import { promisify } from "node:util";
 
 const scrypt = promisify(scryptCallback);
-const databasePath = resolve("data", "database.json");
+const databasePath = resolve(process.env.DATA_DIR ?? "data", "database.json");
 const isProduction = process.env.NODE_ENV === "production";
 const sessionLifetime = 30 * 24 * 60 * 60 * 1000;
 const attempts = new Map();

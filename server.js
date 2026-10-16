@@ -1,13 +1,27 @@
 import "./config.js";
 import { handleAuthRequest } from "./auth-api.js";
 import { createServer } from "node:http";
+import { readFile } from "node:fs/promises";
+import { extname, resolve, sep } from "node:path";
 
-const PORT = Number(process.env.API_PORT ?? 3001);
+// Render y otros alojamientos asignan el puerto con PORT.
+const PORT = Number(process.env.PORT ?? process.env.API_PORT ?? 3001);
 const HOST = process.env.API_HOST ?? (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
 const MODEL = process.env.AI_MODEL ?? "gpt-4o-mini";
 const API_BASE_URL = (process.env.AI_BASE_URL ?? "https://api.openai.com/v1").replace(/\/+$/, "");
 const API_KEY = process.env.AI_API_KEY;
 const dailyCache = new Map();
+const distDir = resolve("dist");
+const contentTypes = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".ico": "image/x-icon",
+  ".json": "application/json; charset=utf-8",
+  ".webmanifest": "application/manifest+json",
+};
 
 const books = [
   ["Génesis", 50], ["Éxodo", 40], ["Levítico", 27], ["Números", 36], ["Deuteronomio", 34],
@@ -98,9 +112,29 @@ async function generateDevotional(day) {
   return { ...devotional, day, reading };
 }
 
+// En producción el mismo servidor entrega la web compilada en dist/.
+async function serveStatic(response, pathname) {
+  try {
+    let filePath = resolve(distDir, `.${decodeURIComponent(pathname)}`);
+    if (filePath !== distDir && !filePath.startsWith(distDir + sep)) filePath = distDir;
+    if (filePath === distDir || !extname(filePath)) filePath = resolve(distDir, "index.html");
+    const content = await readFile(filePath);
+    const cache = filePath.includes(`${sep}assets${sep}`) ? "public, max-age=31536000, immutable" : "no-cache";
+    response.writeHead(200, { "content-type": contentTypes[extname(filePath)] ?? "application/octet-stream", "cache-control": cache });
+    response.end(content);
+  } catch {
+    response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
+    response.end("No encontrado.");
+  }
+}
+
 const server = createServer(async (request, response) => {
   const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "localhost"}`);
   if (await handleAuthRequest(request, response, url)) return;
+  if (!url.pathname.startsWith("/api/") && (request.method === "GET" || request.method === "HEAD")) {
+    await serveStatic(response, url.pathname);
+    return;
+  }
   if (url.pathname !== "/api/devotional" || request.method !== "GET") {
     sendJson(response, 404, { error: "Ruta no encontrada." });
     return;

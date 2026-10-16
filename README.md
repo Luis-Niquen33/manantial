@@ -31,7 +31,11 @@ Pruebas de la API: `npm test`.
 
 ## Producción
 
-Ejecuta `npm run build` y publica la carpeta `dist/` en un alojamiento estático HTTPS. Despliega `server.js` como servicio Node.js con las variables de entorno configuradas y dirige `/api` desde el mismo origen al servicio de API. Los datos de cuentas se guardan en `data/database.json`; la generación de devocionales se almacena en memoria por día mientras el proceso del servidor siga activo.
+Ejecuta `npm run build` y luego `node server.js` con `NODE_ENV=production`: el mismo servidor entrega la web de `dist/` y la API en `/api`. Usa el puerto de `PORT` (o `API_PORT`). Los datos de cuentas se guardan en `DATA_DIR/database.json` (por defecto `data/`); la generación de devocionales se almacena en memoria por día mientras el proceso del servidor siga activo.
+
+### Render
+
+`render.yaml` define el servicio. En Render elige **New → Blueprint**, conecta este repositorio y completa `ADMIN_EMAIL` (un correo), `ADMIN_PASSWORD` (mínimo 12 caracteres) y `AI_API_KEY`. En el plan gratis los datos se borran en cada reinicio; para conservarlos usa un plan con disco y define `DATA_DIR` (ver comentarios en `render.yaml`).
 
 ## Contenido bíblico
 

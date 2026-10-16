@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import AuthScreen from "./AuthScreen.jsx";
 import { AdminGroups, AdminUsers, MyGroup } from "./GroupsPanel.jsx";
-import { loadDevotional } from "./devotionals/index.js";
+import { EDITIONS, loadDevotional } from "./devotionals/index.js";
 
 const BOOKS = [
   ["Génesis", 50], ["Éxodo", 40], ["Levítico", 27], ["Números", 36], ["Deuteronomio", 34],
@@ -153,6 +153,7 @@ function Icon({ name, size = 20 }) {
     arrow: <><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></>,
     chevron: <path d="m9 18 6-6-6-6" />,
     check: <path d="m5 12 4 4L19 6" />,
+    music: <><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></>,
     sparkles: <><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z" /><path d="m19 14 .9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14Z" /></>,
     heart: <path d="M20.8 8.8c0 5.2-8.8 10.2-8.8 10.2S3.2 14 3.2 8.8a4.3 4.3 0 0 1 8.8-1.2 4.3 4.3 0 0 1 8.8 1.2Z" />,
     clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
@@ -238,6 +239,7 @@ function App() {
   const [installPrompt, setInstallPrompt] = useState(null);
   const [theme, setTheme] = useState(() => readStored("manantial:theme", null));
   const [textScale, setTextScale] = useState(() => readStored("manantial:text-scale", 1));
+  const [edition, setEdition] = useState(() => readStored("manantial:edition", "general"));
   const [menuOpen, setMenuOpen] = useState(false);
   const [toast, setToast] = useState(null);
   const [celebrating, setCelebrating] = useState(false);
@@ -312,7 +314,7 @@ function App() {
     setGeneration("loading");
     (async () => {
       // 1) Devocional escrito para este día. 2) Si no existe, se intenta generarlo con IA.
-      const written = await loadDevotional(day);
+      const written = await loadDevotional(day, edition);
       if (written) return { devotional: { ...written, reading }, source: "daily" };
       const response = STATIC_MODE ? null : await fetch(`/api/devotional?day=${day}`).catch(() => null);
       if (response?.ok) return { devotional: { ...(await response.json()), reading }, source: "ai" };
@@ -323,15 +325,15 @@ function App() {
       setGeneration(source);
     });
     return () => { active = false; };
-  }, [day, user?.id]);
+  }, [day, edition, user?.id]);
 
   useEffect(() => {
     if (section !== "guardados") return undefined;
     let active = true;
-    Promise.all(saved.map(async (savedDay) => [savedDay, (await loadDevotional(savedDay)) ?? pendingDevotional(savedDay)]))
+    Promise.all(saved.map(async (savedDay) => [savedDay, (await loadDevotional(savedDay, edition)) ?? pendingDevotional(savedDay)]))
       .then((entries) => { if (active) setSavedDevotionals(Object.fromEntries(entries)); });
     return () => { active = false; };
-  }, [saved, section]);
+  }, [edition, saved, section]);
 
   useEffect(() => {
     if (user && progressReady) writeStored(`manantial:${user.id}:completed`, completed);
@@ -369,6 +371,10 @@ function App() {
     const dark = theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? "#0e1613" : "#f6f3ec");
   }, [theme]);
+
+  useEffect(() => {
+    writeStored("manantial:edition", edition);
+  }, [edition]);
 
   useEffect(() => { writeStored("manantial:text-scale", textScale); }, [textScale]);
 
@@ -627,6 +633,12 @@ function App() {
               <button className="week-arrow" disabled={day >= unlockedUntil} onClick={() => selectDay(day + 1)} aria-label="Día siguiente" title={day >= unlockedUntil && day < DAY_COUNT ? `El próximo devocional se habilita el ${formatUnlockDate(day + 1)}` : undefined}><Icon name="chevron" size={17} /></button>
             </section>
             {day !== todayDay && <button className="back-today" onClick={() => setDay(todayDay)}>Volver a hoy <Icon name="arrow" size={14} /></button>}
+            <div className="edition-switch">
+              <span>Edición del devocional</span>
+              <div className="segmented" role="group" aria-label="Edición del devocional">
+                {EDITIONS.map((item) => <button key={item.id} className={edition === item.id ? "active" : ""} aria-pressed={edition === item.id} onClick={() => setEdition(item.id)}>{item.id === "musicos" && <Icon name="music" size={14} />}{item.label}</button>)}
+              </div>
+            </div>
 
             <div className="reading-banner">
               <div className="reading-icon"><Icon name="book" size={20} /></div>

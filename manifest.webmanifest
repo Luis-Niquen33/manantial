@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "Manantial — Devocional diario",
+  "short_name": "Manantial",
+  "description": "Un encuentro diario con Dios y un recorrido bíblico de 365 días.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f5ef",
+  "theme_color": "#f7f5ef",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

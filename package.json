@@ -9,6 +9,7 @@
     "dev:api": "node server.js",
     "build": "vite build",
     "preview": "vite preview",
+    "deploy": "node scripts/deploy-pages.js",
     "test": "node --test"
   },
   "dependencies": {

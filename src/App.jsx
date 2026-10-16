@@ -217,12 +217,16 @@ function pendingDevotional(day) {
   };
 }
 
+// Versión sin servidor (GitHub Pages): sin cuentas ni grupos; el progreso queda en este dispositivo.
+const STATIC_MODE = import.meta.env.VITE_STATIC === "true";
+const LOCAL_USER = { id: "local", name: "", role: "user" };
+
 function App() {
   const [day, setDay] = useState(getTodayDay);
   const [todayDay, setTodayDay] = useState(getTodayDay);
   const [section, setSection] = useState("hoy");
-  const [user, setUser] = useState(null);
-  const [authStatus, setAuthStatus] = useState("checking");
+  const [user, setUser] = useState(STATIC_MODE ? LOCAL_USER : null);
+  const [authStatus, setAuthStatus] = useState(STATIC_MODE ? "signed-in" : "checking");
   const [connectionError, setConnectionError] = useState("");
   const [progressReady, setProgressReady] = useState(false);
   const [syncError, setSyncError] = useState("");
@@ -244,6 +248,7 @@ function App() {
   const maxDayRef = useRef(DAY_COUNT);
 
   useEffect(() => {
+    if (STATIC_MODE) return;
     fetch("/api/auth")
       .then(async (response) => {
         const data = await response.json().catch(() => ({}));
@@ -261,6 +266,12 @@ function App() {
     if (!user) {
       setProgressReady(false);
       return;
+    }
+    if (STATIC_MODE) {
+      setCompleted(readStored(`manantial:${user.id}:completed`, []));
+      setSaved(readStored(`manantial:${user.id}:saved`, []));
+      setProgressReady(true);
+      return undefined;
     }
     let active = true;
     setProgressReady(false);
@@ -303,7 +314,7 @@ function App() {
       // 1) Devocional escrito para este día. 2) Si no existe, se intenta generarlo con IA.
       const written = await loadDevotional(day);
       if (written) return { devotional: { ...written, reading }, source: "daily" };
-      const response = await fetch(`/api/devotional?day=${day}`).catch(() => null);
+      const response = STATIC_MODE ? null : await fetch(`/api/devotional?day=${day}`).catch(() => null);
       if (response?.ok) return { devotional: { ...(await response.json()), reading }, source: "ai" };
       return { devotional: pendingDevotional(day), source: "pending" };
     })().then(({ devotional: next, source }) => {
@@ -331,7 +342,7 @@ function App() {
   }, [progressReady, saved, user]);
 
   useEffect(() => {
-    if (!user || user.role === "admin" || !progressReady) return undefined;
+    if (STATIC_MODE || !user || user.role === "admin" || !progressReady) return undefined;
     const timeout = window.setTimeout(() => {
       syncQueue.current = syncQueue.current
         .catch(() => {})
@@ -520,7 +531,7 @@ function App() {
   const isDark = theme === "dark" || (!theme && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
   const navItems = user?.role === "admin"
     ? [...NAV_ITEMS.filter((item) => item.id !== "users"), { id: "grupo", label: "Grupos", icon: "users" }, { id: "usuarios", label: "Usuarios", icon: "userPlus" }]
-    : NAV_ITEMS;
+    : STATIC_MODE ? NAV_ITEMS.filter((item) => item.id !== "users") : NAV_ITEMS;
   const sectionTitle = section === "hoy"
     ? "Devocional diario"
     : section === "plan"
@@ -573,7 +584,9 @@ function App() {
           <div className="topbar-actions">
             {installPrompt && <button className="install-button" onClick={installApp}><Icon name="download" size={16} /> <span>Instalar app</span></button>}
             <span className="streak-chip" title="Días seguidos completados"><Icon name="flame" size={15} /> {streak} {streak === 1 ? "día" : "días"}</span>
-            <div className="account-menu" ref={menuRef}>
+            {STATIC_MODE ? (
+              <button className="avatar account-button" aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"} onClick={toggleTheme}><Icon name={isDark ? "sun" : "moon"} size={16} /></button>
+            ) : <div className="account-menu" ref={menuRef}>
               <button className="avatar account-button" aria-haspopup="menu" aria-expanded={menuOpen} aria-label={`Cuenta de ${user.name}`} onClick={() => setMenuOpen((open) => !open)}>{user.name.slice(0, 1).toUpperCase()}</button>
               {menuOpen && (
                 <div className="menu-panel" role="menu">
@@ -582,7 +595,7 @@ function App() {
                   <button role="menuitem" className="danger" onClick={logout}><Icon name="logout" size={16} />Cerrar sesión</button>
                 </div>
               )}
-            </div>
+            </div>}
           </div>
         </header>
         {syncError && <div className="sync-warning" role="alert">{syncError}</div>}
@@ -591,7 +604,7 @@ function App() {
           <div className="page-content" key="hoy">
             <section className="hero-card">
               <div className="hero-copy">
-                <div className="eyebrow light"><span className="eyebrow-line" /> {getGreeting()}, {firstName}</div>
+                <div className="eyebrow light"><span className="eyebrow-line" /> {getGreeting()}{firstName && `, ${firstName}`}</div>
                 <h1>Un momento para <em>estar.</em></h1>
                 <p className="welcome-date">{formatDate(day)} <span>·</span> respira, estás en casa</p>
                 <div className="hero-stats">

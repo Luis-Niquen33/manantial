@@ -3,6 +3,7 @@ import AuthScreen from "./AuthScreen.jsx";
 import EditionIntro from "./EditionIntro.jsx";
 import { AdminGroups, AdminUsers, MyGroup } from "./GroupsPanel.jsx";
 import { EDITIONS, loadDevotional } from "./devotionals/index.js";
+import { phraseOfTheDay } from "./phrases.js";
 
 const BOOKS = [
   ["Génesis", 50], ["Éxodo", 40], ["Levítico", 27], ["Números", 36], ["Deuteronomio", 34],
@@ -261,7 +262,9 @@ function App() {
   const [installPrompt, setInstallPrompt] = useState(null);
   const [theme, setTheme] = useState(() => readStored("manantial:theme", null));
   const [textScale, setTextScale] = useState(() => readStored("manantial:text-scale", 1));
-  const [edition, setEdition] = useState(() => readStored("manantial:edition-choice", null));
+  // La portada aparece en cada visita; solo se recuerda la última edición elegida para destacarla.
+  const [edition, setEdition] = useState(null);
+  const [lastEdition, setLastEdition] = useState(() => readStored("manantial:edition-choice", null));
   const activeEdition = edition ?? "general";
   const [menuOpen, setMenuOpen] = useState(false);
   const [toast, setToast] = useState(null);
@@ -394,7 +397,10 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    if (edition) writeStored("manantial:edition-choice", edition);
+    if (edition) {
+      writeStored("manantial:edition-choice", edition);
+      setLastEdition(edition);
+    }
     // La edición de Ministerios de Música y Alabanza tiene su propia paleta (ver styles.css).
     const root = document.documentElement;
     if (edition === "musicos") root.dataset.edition = "musicos";
@@ -585,10 +591,11 @@ function App() {
     return <AuthScreen connectionError={authStatus === "unavailable" ? connectionError : ""} onLogin={(nextUser) => { setUser(nextUser); setAuthStatus("signed-in"); setConnectionError(""); }} />;
   }
   if (!edition) {
-    return <EditionIntro onSelect={setEdition} />;
+    return <EditionIntro onSelect={(next) => { setEdition(next); setSection("hoy"); window.scrollTo(0, 0); }} lastEdition={lastEdition} greeting={getGreeting()} dateLabel={formatDate(todayDay)} />;
   }
 
   const firstName = user.name.split(" ")[0];
+  const heroPhrase = phraseOfTheDay(activeEdition);
   const selectedSavedDays = saved.map((savedDay) => ({ day: savedDay, devotional: savedDevotionals[savedDay] ?? pendingDevotional(savedDay) }));
   const remainingWeek = weekDays.filter((number) => completedSet.has(number)).length;
 
@@ -646,7 +653,7 @@ function App() {
               {activeEdition === "musicos" && <MusicDecor />}
               <div className="hero-copy">
                 <div className="eyebrow light"><span className="eyebrow-line" /> {getGreeting()}{firstName && `, ${firstName}`}</div>
-                <h1>{activeEdition === "musicos" ? <>Antes de cantar para otros, <em>canta para Él.</em></> : <>Antes que el mundo te hable, <em>escucha a Dios.</em></>}</h1>
+                <h1>{heroPhrase[0]} <em>{heroPhrase[1]}</em></h1>
                 <p className="welcome-date">{formatDate(day)} <span>·</span> Día {day} de tu recorrido por la Biblia</p>
                 <div className="hero-stats">
                   <div><Icon name="flame" size={16} /><strong>{streak}</strong><span>{streak === 1 ? "día seguido" : "días seguidos"}</span></div>
@@ -674,7 +681,7 @@ function App() {
             </section>
             {day !== todayDay && <button className="back-today" onClick={() => setDay(todayDay)}>Volver a hoy <Icon name="arrow" size={14} /></button>}
             <div className="edition-switch">
-              <span>Edición del devocional</span>
+              <span>Edición del devocional <button type="button" className="portal-link" onClick={() => setEdition(null)}>Ver portada</button></span>
               <div className="segmented" role="group" aria-label="Edición del devocional">
                 {EDITIONS.map((item) => <button key={item.id} className={edition === item.id ? "active" : ""} aria-pressed={edition === item.id} onClick={() => setEdition(item.id)}>{item.id === "musicos" && <Icon name="music" size={14} />}{item.label}</button>)}
               </div>

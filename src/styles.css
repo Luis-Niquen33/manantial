@@ -104,89 +104,77 @@
   color-scheme: dark;
 }
 
-/* ───── Edición Ministerios de Música y Alabanza: pastel lavanda, rosa, durazno y menta ───── */
+/* ───── Edición Ministerios de Música y Alabanza: azul noche, dorado y toques cian ───── */
 :root[data-edition="musicos"] {
-  --bg: #f8f5fc;
-  --bg-soft: #f0e9f8;
+  --bg: #f3f5fb;
+  --bg-soft: #e8ecf6;
   --surface: #ffffff;
-  --surface-2: #fbf9fe;
-  --ink: #2f2640;
-  --ink-2: #5a5070;
-  --muted: #847b95;
-  --line: #e9e1f3;
-  --line-soft: #f2edf8;
-  --primary: #7c5cc4;
-  --primary-strong: #6647ad;
-  --primary-soft: #efe8fb;
-  --gold: #d9789c;
-  --gold-bright: #f4b3c9;
-  --gold-soft: #fde9ef;
-  --hero-from: #f7cfe0;
-  --hero-to: #d6c5f5;
-  --hero-title: #2e2045;
-  --hero-ink: #3b2d55;
-  --hero-ink-soft: rgba(59,45,85,.72);
-  --hero-accent: #b4558c;
-  --hero-glass: rgba(255,255,255,.5);
-  --hero-glass-line: rgba(255,255,255,.85);
-  --hero-deco: #8b6cc9;
-  --shadow-lg: 0 24px 60px rgba(150, 110, 200, .25);
+  --surface-2: #f8f9fd;
+  --ink: #141a33;
+  --ink-2: #434b68;
+  --muted: #747c97;
+  --line: #dfe4f0;
+  --line-soft: #ebeef6;
+  --primary: #26378a;
+  --primary-strong: #1b2869;
+  --primary-soft: #e3e8f8;
+  --gold: #b9871f;
+  --gold-bright: #f0c75e;
+  --gold-soft: #f8eed5;
+  --hero-from: #0a1030;
+  --hero-to: #22347c;
+  --hero-title: #ffffff;
+  --hero-ink: #eef1fb;
+  --hero-ink-soft: rgba(238,241,251,.76);
+  --hero-accent: #f0c75e;
+  --hero-glass: rgba(255,255,255,.08);
+  --hero-glass-line: rgba(255,255,255,.16);
+  --hero-deco: #8fd8ff;
+  --shadow-lg: 0 24px 60px rgba(12, 20, 60, .3);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-edition="musicos"]:not([data-theme="light"]) {
-    --bg: #15121c;
-    --bg-soft: #1c1825;
-    --surface: #1f1a29;
-    --surface-2: #262031;
-    --ink: #eee9f5;
-    --ink-2: #c8bfd6;
-    --muted: #9a91aa;
-    --line: #342c42;
-    --line-soft: #2a2336;
-    --primary: #c4aef3;
-    --primary-strong: #d8c8f8;
-    --primary-soft: #31284a;
-    --on-primary: #1a1426;
-    --gold: #f2a6c1;
-    --gold-bright: #f9cbdb;
-    --gold-soft: #3b2430;
-    --hero-from: #2b2340;
-    --hero-to: #4a3b6b;
-    --hero-title: #ffffff;
-    --hero-ink: #f1ecf8;
-    --hero-ink-soft: rgba(241,236,248,.75);
-    --hero-accent: #f9cbdb;
-    --hero-glass: rgba(255,255,255,.08);
-    --hero-glass-line: rgba(255,255,255,.16);
-    --hero-deco: #e9ddff;
+    --bg: #0a0e1d;
+    --bg-soft: #0f1427;
+    --surface: #11172b;
+    --surface-2: #161d35;
+    --ink: #e9edf8;
+    --ink-2: #b7c0da;
+    --muted: #8590ad;
+    --line: #232c48;
+    --line-soft: #1b2340;
+    --primary: #8fa8ff;
+    --primary-strong: #b3c4ff;
+    --primary-soft: #1c2650;
+    --on-primary: #0a0e1d;
+    --gold: #e6b94f;
+    --gold-bright: #f3d27f;
+    --gold-soft: #2e2614;
+    --hero-from: #060a1c;
+    --hero-to: #1b2a68;
+    --hero-accent: #f3d27f;
   }
 }
 :root[data-edition="musicos"][data-theme="dark"] {
-  --bg: #15121c;
-  --bg-soft: #1c1825;
-  --surface: #1f1a29;
-  --surface-2: #262031;
-  --ink: #eee9f5;
-  --ink-2: #c8bfd6;
-  --muted: #9a91aa;
-  --line: #342c42;
-  --line-soft: #2a2336;
-  --primary: #c4aef3;
-  --primary-strong: #d8c8f8;
-  --primary-soft: #31284a;
-  --on-primary: #1a1426;
-  --gold: #f2a6c1;
-  --gold-bright: #f9cbdb;
-  --gold-soft: #3b2430;
-  --hero-from: #2b2340;
-  --hero-to: #4a3b6b;
-  --hero-title: #ffffff;
-  --hero-ink: #f1ecf8;
-  --hero-ink-soft: rgba(241,236,248,.75);
-  --hero-accent: #f9cbdb;
-  --hero-glass: rgba(255,255,255,.08);
-  --hero-glass-line: rgba(255,255,255,.16);
-  --hero-deco: #e9ddff;
+  --bg: #0a0e1d;
+  --bg-soft: #0f1427;
+  --surface: #11172b;
+  --surface-2: #161d35;
+  --ink: #e9edf8;
+  --ink-2: #b7c0da;
+  --muted: #8590ad;
+  --line: #232c48;
+  --line-soft: #1b2340;
+  --primary: #8fa8ff;
+  --primary-strong: #b3c4ff;
+  --primary-soft: #1c2650;
+  --on-primary: #0a0e1d;
+  --gold: #e6b94f;
+  --gold-bright: #f3d27f;
+  --gold-soft: #2e2614;
+  --hero-from: #060a1c;
+  --hero-to: #1b2a68;
+  --hero-accent: #f3d27f;
 }
 
 /* ───────────── Base ───────────── */
@@ -488,9 +476,11 @@ kbd { display: inline-grid; min-width: 24px; height: 22px; place-items: center; 
 .edition-switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 18px; color: var(--muted); font-size: 13px; font-weight: 600; }
 .edition-switch .segmented button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-align: center; line-height: 1.25; }
 /* Detalles visuales de la edición de Música y Alabanza */
-:root[data-edition="musicos"] .brand-mark span { background: linear-gradient(160deg, #fbd3e2, #d9789c); }
-:root[data-edition="musicos"] .journey-card::after { background: radial-gradient(circle, rgba(255,214,188,.75), transparent 70%); }
-:root[data-edition="musicos"] .hero-card { background: radial-gradient(circle at 88% 15%, color-mix(in srgb, #ffd6bc 85%, transparent), transparent 45%), radial-gradient(circle at 6% 110%, color-mix(in srgb, #baecd8 75%, transparent), transparent 48%), linear-gradient(140deg, var(--hero-to), var(--hero-from)); }
+:root[data-edition="musicos"] .brand-mark span { background: linear-gradient(160deg, #f7dc8f, #c9962e); }
+:root[data-edition="musicos"] .journey-card::after { background: radial-gradient(circle, rgba(240,199,94,.4), transparent 70%); }
+:root[data-edition="musicos"] .journey-progress span { background: linear-gradient(90deg, #f0c75e, #8fd8ff); }
+:root[data-edition="musicos"] .hero-card { background: radial-gradient(circle at 86% 16%, rgba(240,199,94,.32), transparent 44%), radial-gradient(circle at 6% 110%, rgba(110,200,255,.26), transparent 48%), linear-gradient(140deg, var(--hero-to), var(--hero-from)); }
+:root[data-edition="musicos"] .hero-card::before { background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1px); background-size: 26px 26px; }
 :root[data-edition="musicos"] .devotional-card { position: relative; overflow: hidden; }
 :root[data-edition="musicos"] .devotional-card::before { content: ""; position: absolute; top: 0; right: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--gold), var(--gold-bright)); }
 :root[data-edition="musicos"] .devotional-card::after { content: "♫"; position: absolute; top: 6px; right: 22px; color: var(--primary); font-family: var(--serif); font-size: 96px; line-height: 1; opacity: .07; pointer-events: none; }
@@ -510,35 +500,54 @@ kbd { display: inline-grid; min-width: 24px; height: 22px; place-items: center; 
 .ministry-instruments svg { color: var(--hero-accent); }
 
 /* ───────────── Portada: elegir la edición del día ───────────── */
-.portal { position: relative; display: flex; min-height: 100vh; flex-direction: column; gap: 28px; overflow: hidden; padding: 28px clamp(16px, 4vw, 56px) 24px; background: radial-gradient(ellipse at 0% 0%, color-mix(in srgb, #2b6c56 16%, transparent), transparent 55%), radial-gradient(ellipse at 100% 100%, color-mix(in srgb, #e9b8d6 38%, transparent), transparent 55%), var(--bg); }
+.portal { position: relative; display: flex; min-height: 100vh; flex-direction: column; gap: 28px; overflow: hidden; padding: 28px clamp(16px, 4vw, 56px) 24px; background: radial-gradient(ellipse at 0% 0%, color-mix(in srgb, #2b6c56 16%, transparent), transparent 55%), radial-gradient(ellipse at 100% 100%, color-mix(in srgb, #22347c 20%, transparent), transparent 55%), var(--bg); }
 .portal-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; animation: fade .6s var(--ease); }
+.portal-tools { display: flex; align-items: center; gap: 12px; }
 .portal-date { color: var(--muted); font-size: 13px; font-weight: 600; letter-spacing: .4px; }
 .portal-date::first-letter { text-transform: uppercase; }
+.portal-sound { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--ink-2); background: var(--surface); cursor: pointer; transition: .2s var(--ease); }
+.portal-sound:hover { color: var(--ink); border-color: var(--gold); }
+.portal-sound[aria-pressed="false"] { color: var(--muted); }
 .portal-hero { animation: rise .6s var(--ease); }
 .portal-hero h1 { margin: 12px 0 0; font-size: clamp(34px, 5vw, 56px); }
-.portal-doors { display: grid; flex: 1; grid-template-columns: 1fr 1fr; align-content: center; gap: 22px; }
-.door { position: relative; display: flex; min-height: 340px; overflow: hidden; padding: 0; border: 0; border-radius: 30px; cursor: pointer; text-align: left; opacity: 0; animation: door-in .7s var(--ease) forwards; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
-.door-musicos { animation-delay: .12s; }
-.door:hover, .door:focus-visible { transform: translateY(-8px) scale(1.01); outline: none; }
-.door:active { transform: scale(.98); }
-.door:focus-visible { box-shadow: 0 0 0 4px var(--bg), 0 0 0 7px var(--primary); }
-.door-scene { position: absolute; inset: 0; pointer-events: none; }
-.door-body { position: relative; display: flex; flex: 1; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 30px; }
-.door-heading { display: grid; gap: 14px; }
-.door-icon { display: grid; width: 64px; height: 64px; place-items: center; border-radius: 20px; }
-.door-title { font-family: var(--serif); font-size: clamp(26px, 2.8vw, 36px); font-weight: 600; letter-spacing: -.5px; line-height: 1.1; }
-.door-go { display: grid; width: 56px; height: 56px; flex: 0 0 auto; place-items: center; border-radius: 50%; font-size: 24px; transition: transform .3s var(--ease); }
-.door:hover .door-go { transform: translateX(6px); }
-.door-badge { position: absolute; top: 22px; left: 24px; z-index: 1; padding: 6px 12px; border-radius: 999px; backdrop-filter: blur(8px); font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; }
+.portal-doors { display: grid; flex: 1; grid-template-columns: 1fr 1fr; align-content: center; gap: 24px; perspective: 1100px; }
+.portal.is-hidden .portal-header, .portal.is-hidden .portal-hero, .portal.is-hidden .door { animation: none; opacity: 0; }
 
-/* Botón General: verde profundo con luz dorada */
-.door-general { color: #fff; background: radial-gradient(circle at 80% 12%, rgba(232,185,100,.45), transparent 42%), radial-gradient(circle at 0% 100%, rgba(125,211,175,.28), transparent 50%), linear-gradient(150deg, #2b6c56, #102f26); box-shadow: 0 24px 60px rgba(20, 59, 48, .28); }
-.door-general:hover { box-shadow: 0 30px 70px rgba(20, 59, 48, .45); }
-.door-general .door-icon { color: #f8dc9c; background: rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.2); }
+/* Tarjetas-botón con inclinación 3D, brillo que sigue el cursor y paralaje */
+.door { --rx: 0deg; --ry: 0deg; --lift: 0px; --px: 0; --py: 0; --mx: 50%; --my: 50%; position: relative; display: flex; min-height: 340px; overflow: hidden; padding: 0; border: 0; border-radius: 30px; cursor: pointer; text-align: left; transform: translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry)); transform-style: preserve-3d; animation: door-in .8s var(--ease) backwards; transition: transform .6s var(--ease), box-shadow .4s var(--ease); -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.door + .door { animation-delay: .14s; }
+.door.is-tilting { transition: transform .1s linear, box-shadow .4s var(--ease); }
+.door:hover, .door:focus-visible { --lift: -8px; outline: none; }
+.door:active { --lift: 2px; }
+.door:focus-visible { box-shadow: 0 0 0 4px var(--bg), 0 0 0 7px var(--gold); }
+.door-scene { position: absolute; inset: 0; pointer-events: none; }
+.door-layer { position: absolute; translate: calc(var(--px) * -36px) calc(var(--py) * -24px); transition: translate .5s var(--ease); }
+.door.is-tilting .door-layer { transition: translate .12s linear; }
+.door-glare { position: absolute; inset: 0; background: radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.22), transparent 45%); opacity: 0; transition: opacity .3s var(--ease); pointer-events: none; }
+.door.is-tilting .door-glare { opacity: 1; }
+.door-body { position: relative; display: flex; flex: 1; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 30px; transform: translateZ(40px); }
+.door-heading { display: grid; gap: 14px; }
+.door-icon { display: grid; width: 64px; height: 64px; place-items: center; border-radius: 20px; background: rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.22); }
+.door-title { font-family: var(--serif); font-size: clamp(26px, 2.8vw, 36px); font-weight: 600; letter-spacing: -.5px; line-height: 1.1; }
+.door-go { display: grid; width: 58px; height: 58px; flex: 0 0 auto; place-items: center; border-radius: 50%; font-size: 24px; animation: go-pulse 2.4s ease-in-out infinite; transition: transform .3s var(--ease); }
+.door:hover .door-go { transform: translateX(6px); }
+.door-badge { position: absolute; top: 22px; left: 24px; z-index: 1; padding: 6px 12px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: rgba(255,255,255,.14); backdrop-filter: blur(8px); font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; }
+
+/* Tonos de cada edición (también se usan en la transición al entrar) */
+.tone-general { color: #fff; background: radial-gradient(circle at 80% 12%, rgba(232,185,100,.45), transparent 42%), radial-gradient(circle at 0% 100%, rgba(125,211,175,.28), transparent 50%), linear-gradient(150deg, #2b6c56, #102f26); }
+.tone-musicos { color: #fff; background: radial-gradient(circle at 82% 12%, rgba(240,199,94,.42), transparent 42%), radial-gradient(circle at 0% 100%, rgba(110,200,255,.3), transparent 50%), linear-gradient(150deg, #22347c, #0a1030); }
+.door.tone-general { box-shadow: 0 24px 60px rgba(20, 59, 48, .3); }
+.door.tone-general:hover { box-shadow: 0 34px 80px rgba(20, 59, 48, .45); }
+.door.tone-musicos { box-shadow: 0 24px 60px rgba(12, 20, 60, .35); }
+.door.tone-musicos:hover { box-shadow: 0 34px 80px rgba(12, 20, 60, .55); }
+.door-general .door-icon { color: #f8dc9c; }
 .door-general .door-go { color: #1b2822; background: linear-gradient(140deg, #f8dc9c, #e8b964); }
-.door-general .door-badge { border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.14); }
-.door-rays { position: absolute; top: -40%; right: -30%; width: 120%; aspect-ratio: 1; border-radius: 50%; background: repeating-conic-gradient(from 0deg, rgba(255,236,190,.16) 0deg 6deg, transparent 6deg 18deg); mask-image: radial-gradient(circle, #000 20%, transparent 68%); animation: spin 60s linear infinite; }
-.door-drop { position: absolute; top: 30px; right: 34px; display: grid; width: 74px; height: 74px; place-items: center; border-radius: 22px; background: rgba(255,255,255,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.2); animation: bob 5s ease-in-out infinite; }
+.door-musicos .door-icon { color: #f0c75e; }
+.door-musicos .door-go { color: #0a1030; background: linear-gradient(140deg, #f7dc8f, #f0c75e); }
+
+/* Escena General: rayos de luz, gota y chispas */
+.door-rays { top: -40%; right: -30%; width: 120%; aspect-ratio: 1; border-radius: 50%; background: repeating-conic-gradient(from 0deg, rgba(255,236,190,.16) 0deg 6deg, transparent 6deg 18deg); mask-image: radial-gradient(circle, #000 20%, transparent 68%); animation: spin 60s linear infinite; }
+.door-drop { top: 30px; right: 34px; display: grid; width: 74px; height: 74px; place-items: center; border-radius: 22px; background: rgba(255,255,255,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.2); animation: bob 5s ease-in-out infinite; }
 .door-drop span { display: block; width: 24px; height: 36px; border-radius: 100% 0 100% 100%; transform: rotate(42deg); background: linear-gradient(160deg, #f8dc9c, #d9a04a); box-shadow: 0 0 30px rgba(248,220,156,.6); }
 .door-spark { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #f8dc9c; box-shadow: 0 0 10px #f8dc9c; opacity: 0; animation: spark 6s ease-in-out infinite; }
 .door-spark:nth-child(3) { top: 22%; left: 58%; }
@@ -548,37 +557,69 @@ kbd { display: inline-grid; min-width: 24px; height: 22px; place-items: center; 
 .door-spark:nth-child(7) { top: 30%; left: 92%; animation-delay: -4s; }
 .door-spark:nth-child(8) { top: 8%; left: 66%; animation-delay: -5s; }
 
-/* Botón Música y Alabanza: pastel lavanda, rosa y durazno */
-.door-musicos { color: #2e2045; background: radial-gradient(circle at 85% 10%, rgba(255,214,188,.95), transparent 45%), radial-gradient(circle at 0% 100%, rgba(186,236,216,.9), transparent 50%), linear-gradient(150deg, #d7c6f6, #f6cde0 70%); box-shadow: 0 24px 60px rgba(150, 110, 200, .25); }
-.door-musicos:hover { box-shadow: 0 30px 70px rgba(150, 110, 200, .4); }
-.door-musicos .door-icon { color: #8b6cc9; background: rgba(255,255,255,.65); box-shadow: 0 6px 18px rgba(139,108,201,.2); }
-.door-musicos .door-go { color: #fff; background: linear-gradient(140deg, #7c5cc4, #d06a92); box-shadow: 0 8px 20px rgba(200,120,170,.35); }
-.door-musicos .door-badge { border: 1px solid rgba(255,255,255,.9); color: #6b4fa3; background: rgba(255,255,255,.6); }
-.door-staff { position: absolute; top: 22%; left: -10%; display: grid; gap: 11px; width: 120%; transform: rotate(-8deg); opacity: .35; }
-.door-staff i { display: block; height: 1.5px; background: #a88be0; }
-.door-note { position: absolute; font-family: var(--serif); line-height: 1; animation: note-float 6s ease-in-out infinite; }
-.door-note:nth-of-type(1) { top: 8%; left: 50%; font-size: 46px; color: #e48aa8; }
-.door-note:nth-of-type(2) { top: 22%; left: 72%; font-size: 60px; color: #8b6cc9; opacity: .7; animation-delay: -1.5s; }
-.door-note:nth-of-type(3) { top: 6%; left: 86%; font-size: 34px; color: #6fc3a4; animation-delay: -3s; }
-.door-note:nth-of-type(4) { top: 36%; left: 58%; font-size: 30px; color: #f2a07b; opacity: .8; animation-delay: -4.5s; }
-.door-note:nth-of-type(5) { top: 30%; left: 36%; font-size: 26px; color: #a88be0; opacity: .7; animation-delay: -2.2s; }
-.door-equalizer { position: absolute; top: 34px; right: 34px; display: flex; align-items: flex-end; gap: 5px; height: 48px; opacity: .75; }
-.door-equalizer i { display: block; width: 6px; height: 100%; border-radius: 3px; background: #a88be0; transform-origin: bottom; animation: eq 1.1s ease-in-out infinite; }
-.door-equalizer i:nth-child(3n+1) { background: #e48aa8; }
-.door-equalizer i:nth-child(3n+2) { background: #6fc3a4; }
+/* Escena Música y Alabanza: cielo nocturno, pentagrama, notas doradas y ecualizador */
+.door-star { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px #fff; animation: twinkle 3.2s ease-in-out infinite; }
+.door-star:nth-child(1) { top: 10%; left: 12%; }
+.door-star:nth-child(2) { top: 18%; left: 34%; animation-delay: -.6s; }
+.door-star:nth-child(3) { top: 6%; left: 46%; animation-delay: -1.2s; }
+.door-star:nth-child(4) { top: 28%; left: 22%; animation-delay: -1.8s; }
+.door-star:nth-child(5) { top: 12%; left: 64%; animation-delay: -2.4s; }
+.door-star:nth-child(6) { top: 40%; left: 8%; animation-delay: -.3s; }
+.door-star:nth-child(7) { top: 22%; left: 90%; animation-delay: -.9s; }
+.door-star:nth-child(8) { top: 48%; left: 40%; animation-delay: -1.5s; }
+.door-star:nth-child(9) { top: 4%; left: 78%; animation-delay: -2.1s; }
+.door-star:nth-child(10) { top: 36%; left: 54%; animation-delay: -2.7s; }
+.door-star:nth-child(11) { top: 52%; left: 74%; animation-delay: -.45s; }
+.door-star:nth-child(12) { top: 16%; left: 4%; animation-delay: -1.05s; }
+.door-star:nth-child(13) { top: 44%; left: 28%; animation-delay: -1.65s; }
+.door-star:nth-child(14) { top: 32%; left: 70%; animation-delay: -2.25s; }
+.door-staff { top: 22%; left: -10%; display: grid; gap: 11px; width: 120%; transform: rotate(-8deg); opacity: .32; }
+.door-staff i { display: block; height: 1.5px; background: #8fd8ff; }
+.door-notes { inset: 0; }
+.door-note { position: absolute; font-family: var(--serif); line-height: 1; text-shadow: 0 0 18px currentColor; animation: note-float 6s ease-in-out infinite; }
+.door-note:nth-child(1) { top: 8%; left: 50%; font-size: 46px; color: #f0c75e; }
+.door-note:nth-child(2) { top: 22%; left: 72%; font-size: 60px; color: #ffffff; opacity: .85; animation-delay: -1.5s; }
+.door-note:nth-child(3) { top: 6%; left: 86%; font-size: 34px; color: #8fd8ff; animation-delay: -3s; }
+.door-note:nth-child(4) { top: 36%; left: 58%; font-size: 30px; color: #f0c75e; opacity: .75; animation-delay: -4.5s; }
+.door-note:nth-child(5) { top: 30%; left: 34%; font-size: 26px; color: #8fd8ff; opacity: .7; animation-delay: -2.2s; }
+.door-equalizer { position: absolute; top: 34px; right: 34px; display: flex; align-items: flex-end; gap: 5px; height: 48px; opacity: .85; }
+.door-equalizer i { display: block; width: 6px; height: 100%; border-radius: 3px; background: linear-gradient(180deg, #f7dc8f, #f0c75e); transform-origin: bottom; animation: eq 1.1s ease-in-out infinite; }
+.door-equalizer i:nth-child(3n+2) { background: linear-gradient(180deg, #bdeaff, #8fd8ff); }
 .door-equalizer i:nth-child(2n) { animation-duration: .9s; }
 .door-equalizer i:nth-child(3n) { animation-duration: 1.4s; }
 .door-equalizer i:nth-child(4n+1) { animation-delay: -.4s; }
 .door-equalizer i:nth-child(5n+2) { animation-delay: -.7s; }
 
+/* Transición: la tarjeta elegida crece hasta llenar la pantalla */
+.door-expand { position: fixed; z-index: 60; border-radius: 30px; pointer-events: none; transition: top .6s var(--ease), left .6s var(--ease), width .6s var(--ease), height .6s var(--ease), border-radius .6s var(--ease); }
+.enter-curtain { position: fixed; inset: 0; z-index: 60; pointer-events: none; animation: curtain-out .7s var(--ease) forwards; }
+
+/* Animación de bienvenida: una gota cae, forma ondas y aparece el nombre */
+.splash { position: fixed; inset: 0; z-index: 70; display: grid; width: 100%; place-items: center; overflow: hidden; padding: 0; border: 0; color: #fff; background: radial-gradient(circle at 50% 58%, #1f5a47, #0c241d 55%, #08101f); cursor: pointer; animation: splash-out .5s ease 2.8s forwards; }
+.splash-drop { position: absolute; top: 50%; left: 50%; width: 22px; height: 32px; margin: -16px 0 0 -11px; border-radius: 100% 0 100% 100%; background: linear-gradient(160deg, #f8dc9c, #d9a04a); box-shadow: 0 0 30px rgba(248,220,156,.7); animation: drop-fall .9s cubic-bezier(.55,0,1,.45) forwards; }
+.splash-ripples i { position: absolute; top: 50%; left: 50%; width: 120px; height: 40px; margin: -20px 0 0 -60px; border: 2px solid rgba(248,220,156,.8); border-radius: 50%; opacity: 0; animation: ripple 1.8s ease-out .85s forwards; }
+.splash-ripples i:nth-child(2) { animation-delay: 1.05s; }
+.splash-ripples i:nth-child(3) { animation-delay: 1.25s; }
+.splash-brand { position: relative; display: grid; justify-items: center; gap: 14px; padding: 0 24px; text-align: center; translate: 0 -70px; }
+.splash-brand .brand-name { color: #fff; font-size: clamp(40px, 8vw, 64px); opacity: 0; animation: rise .7s var(--ease) 1.15s forwards; }
+.splash-phrase { max-width: 520px; color: rgba(255,255,255,.85); font-family: var(--serif); font-size: clamp(18px, 2.6vw, 22px); font-style: italic; line-height: 1.4; opacity: 0; animation: rise .7s var(--ease) 1.5s forwards; }
+.splash-phrase em { color: #f8dc9c; }
+.splash-skip { position: absolute; bottom: 28px; left: 0; right: 0; color: rgba(255,255,255,.5); font-size: 12px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; }
+
 .portal-footer { color: var(--muted); font-size: 12.5px; text-align: center; }
 .portal-footer strong { color: var(--ink-2); }
 .portal-link { margin-left: 8px; padding: 0; border: 0; color: var(--primary); background: none; cursor: pointer; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
-@keyframes door-in { from { opacity: 0; transform: translateY(26px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes door-in { from { opacity: 0; transform: translateY(40px) rotateX(14deg); } to { opacity: 1; } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes spark { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: .9; transform: scale(1); } }
+@keyframes twinkle { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
 @keyframes eq { 0%, 100% { transform: scaleY(.25); } 50% { transform: scaleY(1); } }
+@keyframes go-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,.35); } 50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); } }
+@keyframes drop-fall { 0% { opacity: 0; transform: translateY(-46vh) rotate(42deg); } 15% { opacity: 1; } 90% { opacity: 1; transform: translateY(0) rotate(42deg); } 100% { opacity: 0; transform: translateY(6px) rotate(42deg) scale(.4); } }
+@keyframes ripple { 0% { opacity: .9; transform: scale(.2); } 100% { opacity: 0; transform: scale(4); } }
+@keyframes splash-out { to { opacity: 0; visibility: hidden; } }
+@keyframes curtain-out { from { opacity: 1; } to { opacity: 0; } }
 @media (max-width: 760px) {
   .portal { gap: 20px; padding-top: 20px; }
   .portal-doors { grid-template-columns: 1fr; align-content: start; gap: 16px; }

@@ -265,6 +265,7 @@ function App() {
   // La portada aparece en cada visita; solo se recuerda la última edición elegida para destacarla.
   const [edition, setEdition] = useState(null);
   const [lastEdition, setLastEdition] = useState(() => readStored("manantial:edition-choice", null));
+  const [curtain, setCurtain] = useState(null);
   const activeEdition = edition ?? "general";
   const [menuOpen, setMenuOpen] = useState(false);
   const [toast, setToast] = useState(null);
@@ -409,7 +410,7 @@ function App() {
 
   useEffect(() => {
     const dark = theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    const colors = edition === "musicos" ? ["#110c17", "#f5f1f8"] : ["#0e1613", "#f6f3ec"];
+    const colors = edition === "musicos" ? ["#0a0e1d", "#f3f5fb"] : ["#0e1613", "#f6f3ec"];
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? colors[0] : colors[1]);
   }, [edition, theme]);
 
@@ -591,7 +592,7 @@ function App() {
     return <AuthScreen connectionError={authStatus === "unavailable" ? connectionError : ""} onLogin={(nextUser) => { setUser(nextUser); setAuthStatus("signed-in"); setConnectionError(""); }} />;
   }
   if (!edition) {
-    return <EditionIntro onSelect={(next) => { setEdition(next); setSection("hoy"); window.scrollTo(0, 0); }} lastEdition={lastEdition} greeting={getGreeting()} dateLabel={formatDate(todayDay)} />;
+    return <EditionIntro onSelect={(next) => { setEdition(next); setCurtain(next); setSection("hoy"); window.scrollTo(0, 0); }} lastEdition={lastEdition} greeting={getGreeting()} dateLabel={formatDate(todayDay)} />;
   }
 
   const firstName = user.name.split(" ")[0];
@@ -601,6 +602,7 @@ function App() {
 
   return (
     <div className="app-shell">
+      {curtain && <div className={`enter-curtain tone-${curtain}`} onAnimationEnd={() => setCurtain(null)} aria-hidden="true" />}
       <aside className="sidebar">
         <a className="brand" href="#" onClick={(event) => { event.preventDefault(); setSection("hoy"); }}>
           <span className="brand-mark"><span /></span>

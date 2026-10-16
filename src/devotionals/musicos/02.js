@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 32–62: Levítico 11 – Josué 14
+// Edición Ministerios de Música y Alabanza · Días 32–62: Levítico 11 – Josué 14
 export default [
   {
     day: 32,

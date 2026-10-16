@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 63–93: Josué 15 – 1 Reyes 11
+// Edición Ministerios de Música y Alabanza · Días 63–93: Josué 15 – 1 Reyes 11
 export default [
   {
     day: 63,

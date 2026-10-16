@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 342–365: Colosenses 4 – Apocalipsis 22
+// Edición Ministerios de Música y Alabanza · Días 342–365: Colosenses 4 – Apocalipsis 22
 export default [
   {
     day: 342,

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import AuthScreen from "./AuthScreen.jsx";
+import EditionIntro from "./EditionIntro.jsx";
 import { AdminGroups, AdminUsers, MyGroup } from "./GroupsPanel.jsx";
 import { EDITIONS, loadDevotional } from "./devotionals/index.js";
 
@@ -239,7 +240,8 @@ function App() {
   const [installPrompt, setInstallPrompt] = useState(null);
   const [theme, setTheme] = useState(() => readStored("manantial:theme", null));
   const [textScale, setTextScale] = useState(() => readStored("manantial:text-scale", 1));
-  const [edition, setEdition] = useState(() => readStored("manantial:edition", "general"));
+  const [edition, setEdition] = useState(() => readStored("manantial:edition-choice", null));
+  const activeEdition = edition ?? "general";
   const [menuOpen, setMenuOpen] = useState(false);
   const [toast, setToast] = useState(null);
   const [celebrating, setCelebrating] = useState(false);
@@ -314,7 +316,7 @@ function App() {
     setGeneration("loading");
     (async () => {
       // 1) Devocional escrito para este día. 2) Si no existe, se intenta generarlo con IA.
-      const written = await loadDevotional(day, edition);
+      const written = await loadDevotional(day, activeEdition);
       if (written) return { devotional: { ...written, reading }, source: "daily" };
       const response = STATIC_MODE ? null : await fetch(`/api/devotional?day=${day}`).catch(() => null);
       if (response?.ok) return { devotional: { ...(await response.json()), reading }, source: "ai" };
@@ -325,15 +327,15 @@ function App() {
       setGeneration(source);
     });
     return () => { active = false; };
-  }, [day, edition, user?.id]);
+  }, [day, activeEdition, user?.id]);
 
   useEffect(() => {
     if (section !== "guardados") return undefined;
     let active = true;
-    Promise.all(saved.map(async (savedDay) => [savedDay, (await loadDevotional(savedDay, edition)) ?? pendingDevotional(savedDay)]))
+    Promise.all(saved.map(async (savedDay) => [savedDay, (await loadDevotional(savedDay, activeEdition)) ?? pendingDevotional(savedDay)]))
       .then((entries) => { if (active) setSavedDevotionals(Object.fromEntries(entries)); });
     return () => { active = false; };
-  }, [edition, saved, section]);
+  }, [activeEdition, saved, section]);
 
   useEffect(() => {
     if (user && progressReady) writeStored(`manantial:${user.id}:completed`, completed);
@@ -373,7 +375,7 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    writeStored("manantial:edition", edition);
+    if (edition) writeStored("manantial:edition-choice", edition);
   }, [edition]);
 
   useEffect(() => { writeStored("manantial:text-scale", textScale); }, [textScale]);
@@ -553,6 +555,9 @@ function App() {
   if (authStatus !== "signed-in") {
     return <AuthScreen connectionError={authStatus === "unavailable" ? connectionError : ""} onLogin={(nextUser) => { setUser(nextUser); setAuthStatus("signed-in"); setConnectionError(""); }} />;
   }
+  if (!edition) {
+    return <EditionIntro onSelect={setEdition} />;
+  }
 
   const firstName = user.name.split(" ")[0];
   const selectedSavedDays = saved.map((savedDay) => ({ day: savedDay, devotional: savedDevotionals[savedDay] ?? pendingDevotional(savedDay) }));
@@ -611,8 +616,8 @@ function App() {
             <section className="hero-card">
               <div className="hero-copy">
                 <div className="eyebrow light"><span className="eyebrow-line" /> {getGreeting()}{firstName && `, ${firstName}`}</div>
-                <h1>Un momento para <em>estar.</em></h1>
-                <p className="welcome-date">{formatDate(day)} <span>·</span> respira, estás en casa</p>
+                <h1>{activeEdition === "musicos" ? <>Antes de cantar para otros, <em>canta para Él.</em></> : <>Antes que el mundo te hable, <em>escucha a Dios.</em></>}</h1>
+                <p className="welcome-date">{formatDate(day)} <span>·</span> Día {day} de tu recorrido por la Biblia</p>
                 <div className="hero-stats">
                   <div><Icon name="flame" size={16} /><strong>{streak}</strong><span>{streak === 1 ? "día seguido" : "días seguidos"}</span></div>
                   <div><Icon name="target" size={16} /><strong>{remainingWeek}/7</strong><span>esta semana</span></div>

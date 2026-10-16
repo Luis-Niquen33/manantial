@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 156–186: Salmos 27 – 127
+// Edición Ministerios de Música y Alabanza · Días 156–186: Salmos 27 – 127
 export default [
   {
     day: 156,

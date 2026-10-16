@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 218–248: Isaías 28 – Ezequiel 5
+// Edición Ministerios de Música y Alabanza · Días 218–248: Isaías 28 – Ezequiel 5
 export default [
   {
     day: 218,

@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 1–31: Génesis 1 – Levítico 10
+// Edición Ministerios de Música y Alabanza · Días 1–31: Génesis 1 – Levítico 10
 export default [
   {
     day: 1,

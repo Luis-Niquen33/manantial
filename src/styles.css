@@ -393,7 +393,16 @@ kbd { display: inline-grid; min-width: 24px; height: 22px; place-items: center; 
 
 .mobile-nav { display: none; }
 .edition-switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 18px; color: var(--muted); font-size: 13px; font-weight: 600; }
-.edition-switch .segmented button { display: inline-flex; align-items: center; gap: 6px; }
+.edition-switch .segmented button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-align: center; line-height: 1.25; }
+.edition-choices { display: grid; gap: 12px; }
+.edition-choice { display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; color: var(--ink); background: var(--surface-2); cursor: pointer; text-align: left; transition: border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease); }
+.edition-choice:hover, .edition-choice:focus-visible { border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent); transform: translateY(-2px); outline: none; }
+.edition-choice-icon { display: grid; width: 44px; height: 44px; flex: 0 0 auto; place-items: center; border-radius: 13px; color: var(--primary); background: var(--primary-soft); }
+.edition-choice-copy { display: grid; flex: 1; gap: 4px; min-width: 0; }
+.edition-choice-copy strong { font-family: var(--serif); font-size: 19px; font-weight: 600; line-height: 1.2; }
+.edition-choice-copy small { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+.edition-choice-arrow { color: var(--primary); font-size: 20px; transition: transform .2s var(--ease); }
+.edition-choice:hover .edition-choice-arrow { transform: translateX(4px); }
 .app-footer { padding: 28px 16px 32px; color: var(--muted); font-size: 12.5px; text-align: center; }
 .app-footer strong { color: var(--ink-2); font-weight: 600; }
 .sync-warning { margin: 14px auto 0; width: min(860px, calc(100% - 96px)); padding: 12px 16px; border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent); border-radius: 12px; color: var(--danger); background: var(--danger-soft); font-size: 14px; animation: rise .3s var(--ease); }

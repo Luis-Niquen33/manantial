@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 187–217: Salmos 128 – Isaías 27
+// Edición Ministerios de Música y Alabanza · Días 187–217: Salmos 128 – Isaías 27
 export default [
   {
     day: 187,

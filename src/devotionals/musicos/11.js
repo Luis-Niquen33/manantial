@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 311–341: Juan 13 – Colosenses 3
+// Edición Ministerios de Música y Alabanza · Días 311–341: Juan 13 – Colosenses 3
 export default [
   {
     day: 311,

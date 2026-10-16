@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 280–310: Sofonías 3 – Juan 12
+// Edición Ministerios de Música y Alabanza · Días 280–310: Sofonías 3 – Juan 12
 export default [
   {
     day: 280,

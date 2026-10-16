@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 94–124: 1 Reyes 12 – 2 Crónicas 36
+// Edición Ministerios de Música y Alabanza · Días 94–124: 1 Reyes 12 – 2 Crónicas 36
 export default [
   {
     day: 94,

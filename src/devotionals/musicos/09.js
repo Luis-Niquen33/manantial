@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 249–279: Ezequiel 6 – Sofonías 2
+// Edición Ministerios de Música y Alabanza · Días 249–279: Ezequiel 6 – Sofonías 2
 export default [
   {
     day: 249,

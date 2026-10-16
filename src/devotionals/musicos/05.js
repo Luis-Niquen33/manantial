@@ -1,4 +1,4 @@
-// Edición para músicos cristianos · Días 125–155: Esdras 1 – Salmos 26
+// Edición Ministerios de Música y Alabanza · Días 125–155: Esdras 1 – Salmos 26
 export default [
   {
     day: 125,

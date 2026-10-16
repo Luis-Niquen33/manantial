@@ -63,6 +63,40 @@ const PHRASES = {
     ["Un corazón rendido", "es un corazón libre."],
     ["Tu historia no terminó;", "Dios sigue escribiendo."],
     ["Hoy es un regalo;", "ábrelo con gratitud."],
+    ["Los cielos cuentan la gloria de Dios,", "el firmamento proclama la obra de sus manos.", "Salmos 19:1"],
+    ["Deléitate en el Señor,", "y él te concederá los deseos de tu corazón.", "Salmos 37:4"],
+    ["El que habita al abrigo del Altísimo", "se acoge a la sombra del Todopoderoso.", "Salmos 91:1"],
+    ["¡Te alabo porque soy", "una creación admirable!", "Salmos 139:14"],
+    ["Pon en manos del Señor todas tus obras,", "y tus proyectos se cumplirán.", "Proverbios 16:3"],
+    ["Te he llamado por tu nombre;", "tú eres mío.", "Isaías 43:1"],
+    ["Ustedes son", "la luz del mundo.", "Mateo 5:14"],
+    ["Pidan, y se les dará; busquen, y encontrarán;", "llamen, y se les abrirá.", "Mateo 7:7"],
+    ["Yo soy", "el buen pastor.", "Juan 10:11"],
+    ["Yo soy la vid", "y ustedes son las ramas.", "Juan 15:5"],
+    ["Conocerán la verdad,", "y la verdad los hará libres.", "Juan 8:32"],
+    ["No se amolden al mundo actual,", "sean transformados mediante la renovación de su mente.", "Romanos 12:2"],
+    ["Cuando todavía éramos pecadores,", "Cristo murió por nosotros.", "Romanos 5:8"],
+    ["Que el Dios de la esperanza", "los llene de toda alegría y paz.", "Romanos 15:13"],
+    ["Por gracia ustedes han sido salvados", "mediante la fe.", "Efesios 2:8"],
+    ["No se inquieten por nada;", "presenten sus peticiones a Dios y denle gracias.", "Filipenses 4:6"],
+    ["Alégrense siempre en el Señor.", "Insisto: ¡Alégrense!", "Filipenses 4:4"],
+    ["Concentren su atención en las cosas de arriba,", "no en las de la tierra.", "Colosenses 3:2"],
+    ["Den gracias a Dios", "en toda situación.", "1 Tesalonicenses 5:18"],
+    ["La fe es la garantía de lo que se espera,", "la certeza de lo que no se ve.", "Hebreos 11:1"],
+    ["Jesucristo es el mismo", "ayer y hoy y por los siglos.", "Hebreos 13:8"],
+    ["Si a alguno le falta sabiduría,", "pídasela a Dios.", "Santiago 1:5"],
+    ["Nosotros amamos", "porque él nos amó primero.", "1 Juan 4:19"],
+    ["Practica la justicia, ama la misericordia,", "y humíllate ante tu Dios.", "Miqueas 6:8"],
+    ["Me llenarás de alegría", "en tu presencia.", "Salmos 16:11"],
+    ["Encomienda al Señor tus afanes,", "y él te sostendrá.", "Salmos 55:22"],
+    ["El Señor está cerca", "de quienes lo invocan.", "Salmos 145:18"],
+    ["No nos cansemos", "de hacer el bien.", "Gálatas 6:9"],
+    ["Enséñanos a contar bien nuestros días,", "para que nuestro corazón adquiera sabiduría.", "Salmos 90:12"],
+    ["Por sobre todas las cosas cuida tu corazón,", "porque de él mana la vida.", "Proverbios 4:23"],
+    ["Hoy no empiezas de cero:", "empiezas con Él."],
+    ["Cinco minutos con Dios", "pueden cambiar tu día."],
+    ["Hoy alguien necesita ver", "a Jesús en ti."],
+    ["El perdón que recibiste", "es el que hoy puedes dar."],
   ],
   musicos: [
     ["Cántenle una canción nueva;", "toquen con destreza, y den voces de alegría.", "Salmos 33:3"],
@@ -121,12 +155,49 @@ const PHRASES = {
     ["Tu canción de hoy", "puede ser el consuelo de alguien."],
     ["El escenario es pequeño", "comparado con su trono."],
     ["Hoy toca", "como si solo Él te escuchara."],
+    ["Mi corazón salta de alegría,", "y con cánticos le daré gracias.", "Salmos 28:7"],
+    ["¡Aclamen alegres a Dios,", "habitantes de toda la tierra!", "Salmos 66:1"],
+    ["Canten alegres a Dios,", "nuestra fortaleza.", "Salmos 81:1"],
+    ["Quiero cantar al amor y a la justicia;", "quiero, Señor, cantarte salmos.", "Salmos 101:1"],
+    ["Cántenle, cántenle salmos;", "hablen de todas sus maravillas.", "Salmos 105:2"],
+    ["Canten salmos a su nombre,", "porque eso es agradable.", "Salmos 135:3"],
+    ["Canten al Señor un cántico nuevo,", "alábenlo en la comunidad de los fieles.", "Salmos 149:1"],
+    ["¡Alaben al Señor, naciones todas!", "¡Pueblos todos, cántenle alabanzas!", "Salmos 117:1"],
+    ["Te bendeciré mientras viva,", "y alzando mis manos te invocaré.", "Salmos 63:4"],
+    ["Señor mi Dios,", "con todo el corazón te alabaré.", "Salmos 86:12"],
+    ["Los trompetistas y los cantores", "alababan y daban gracias al Señor al unísono.", "2 Crónicas 5:13"],
+    ["Canten al Señor,", "habitantes de toda la tierra.", "1 Crónicas 16:23"],
+    ["Santo, santo, santo", "es el Señor Dios Todopoderoso.", "Apocalipsis 4:8"],
+    ["Digno eres, Señor y Dios nuestro,", "de recibir la gloria, la honra y el poder.", "Apocalipsis 4:11"],
+    ["Si ellos se callan,", "gritarán las piedras.", "Lucas 19:40"],
+    ["Después de cantar los salmos,", "salieron al monte de los Olivos.", "Mateo 26:30"],
+    ["De día el Señor mande su amor,", "y de noche su canto me acompañe.", "Salmos 42:8"],
+    ["Tributen al Señor la gloria que merece su nombre;", "póstrense ante el Señor en su santuario majestuoso.", "Salmos 29:2"],
+    ["Vengan, postrémonos reverentes,", "doblemos la rodilla ante el Señor nuestro Hacedor.", "Salmos 95:6"],
+    ["Ofrezca cada uno su cuerpo como sacrificio vivo,", "santo y agradable a Dios.", "Romanos 12:1"],
+    ["Proclamaré tu nombre a mis hermanos;", "en medio de la congregación te alabaré.", "Salmos 22:22"],
+    ["El Señor es mi fuerza y mi escudo;", "mi corazón en él confía.", "Salmos 28:7"],
+    ["Un culto inolvidable", "empieza en el ensayo."],
+    ["Servir detrás de la consola", "también es adoración."],
+    ["La afinación más importante", "sucede de rodillas."],
+    ["Canta la verdad,", "aunque no sea lo más popular."],
+    ["Quien dirige la alabanza", "sirve; no brilla."],
+    ["Practica en lo secreto;", "Dios honra en público."],
+    ["La alabanza rompe cadenas", "que la fuerza no puede."],
+    ["Mientras tengas aliento,", "alaba al Señor."],
   ],
 };
 
-// Devuelve la frase del día para una edición: misma frase durante todo el día, otra al día siguiente.
-export function phraseOfTheDay(edition, date = new Date()) {
+// Devuelve la frase de un día del plan (1–365): cada día tiene una frase distinta a la del día anterior y siguiente.
+export function phraseOfTheDay(edition, planDay) {
   const list = PHRASES[edition] ?? PHRASES.general;
-  const dayNumber = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
-  return list[dayNumber % list.length];
+  return list[(planDay - 1) % list.length];
+}
+
+// Versículo de la bienvenida: distinto del que muestra la tarjeta principal ese mismo día.
+export function welcomeVerse(planDay) {
+  const verses = PHRASES.general.filter((phrase) => phrase[2]);
+  const shown = phraseOfTheDay("general", planDay);
+  const candidate = verses[(planDay * 7) % verses.length];
+  return candidate === shown ? verses[(planDay * 7 + 1) % verses.length] : candidate;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { EDITIONS } from "./devotionals/index.js";
-import { NVI_NOTICE, phraseOfTheDay } from "./phrases.js";
+import { NVI_NOTICE, welcomeVerse } from "./phrases.js";
 
 const ICONS = {
   general: <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" /></>,
@@ -51,8 +51,8 @@ function playEditionSound(edition) {
   } catch { /* audio no disponible */ }
 }
 
-function Splash({ onDone }) {
-  const [start, highlight, reference] = phraseOfTheDay("general");
+function Splash({ onDone, planDay }) {
+  const [start, highlight, reference] = welcomeVerse(planDay);
   const done = useRef(onDone);
   done.current = onDone;
   useEffect(() => {
@@ -138,7 +138,7 @@ function Door({ item, isLast, onChoose }) {
 }
 
 // Portada: aparece cada vez que se abre la app para elegir la edición del día.
-export default function EditionIntro({ onSelect, lastEdition, greeting, dateLabel }) {
+export default function EditionIntro({ onSelect, lastEdition, greeting, dateLabel, planDay }) {
   const [showSplash, setShowSplash] = useState(() => !splashAlreadyShown && !prefersReducedMotion());
   const [muted, setMuted] = useState(readMuted);
   const [expanding, setExpanding] = useState(null);
@@ -176,7 +176,7 @@ export default function EditionIntro({ onSelect, lastEdition, greeting, dateLabe
         <span className="portal-ripples"><i /><i /><i /><i /></span>
         {Array.from({ length: 16 }, (_, index) => <span key={index} className="portal-mote" />)}
       </span>
-      {showSplash && <Splash onDone={() => setShowSplash(false)} />}
+      {showSplash && <Splash planDay={planDay} onDone={() => setShowSplash(false)} />}
 
       <header className="portal-header">
         <span className="brand">

@@ -592,11 +592,11 @@ function App() {
     return <AuthScreen connectionError={authStatus === "unavailable" ? connectionError : ""} onLogin={(nextUser) => { setUser(nextUser); setAuthStatus("signed-in"); setConnectionError(""); }} />;
   }
   if (!edition) {
-    return <EditionIntro onSelect={(next) => { setEdition(next); setCurtain(next); setSection("hoy"); window.scrollTo(0, 0); }} lastEdition={lastEdition} greeting={getGreeting()} dateLabel={formatDate(todayDay)} />;
+    return <EditionIntro onSelect={(next) => { setEdition(next); setCurtain(next); setSection("hoy"); window.scrollTo(0, 0); }} lastEdition={lastEdition} greeting={getGreeting()} dateLabel={formatDate(todayDay)} planDay={todayDay} />;
   }
 
   const firstName = user.name.split(" ")[0];
-  const heroPhrase = phraseOfTheDay(activeEdition);
+  const heroPhrase = phraseOfTheDay(activeEdition, day);
   const selectedSavedDays = saved.map((savedDay) => ({ day: savedDay, devotional: savedDevotionals[savedDay] ?? pendingDevotional(savedDay) }));
   const remainingWeek = weekDays.filter((number) => completedSet.has(number)).length;
 

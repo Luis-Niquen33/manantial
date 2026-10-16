@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { EDITIONS } from "./devotionals/index.js";
-import { phraseOfTheDay } from "./phrases.js";
+import { NVI_NOTICE, phraseOfTheDay } from "./phrases.js";
 
 const ICONS = {
   general: <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" /></>,
@@ -52,11 +52,11 @@ function playEditionSound(edition) {
 }
 
 function Splash({ onDone }) {
-  const [start, highlight] = phraseOfTheDay("general");
+  const [start, highlight, reference] = phraseOfTheDay("general");
   const done = useRef(onDone);
   done.current = onDone;
   useEffect(() => {
-    const timer = window.setTimeout(() => done.current(), 3200);
+    const timer = window.setTimeout(() => done.current(), 6300);
     return () => window.clearTimeout(timer);
   }, []);
   return (
@@ -66,6 +66,7 @@ function Splash({ onDone }) {
       <span className="splash-brand">
         <span className="brand-name">manantial<span>.</span></span>
         <span className="splash-phrase">“{start} <em>{highlight}</em>”</span>
+        {reference && <span className="splash-ref">{reference} · NVI</span>}
       </span>
       <span className="splash-skip">Toca para continuar</span>
     </button>
@@ -170,6 +171,11 @@ export default function EditionIntro({ onSelect, lastEdition, greeting, dateLabe
 
   return (
     <main className={`portal ${showSplash ? "is-hidden" : ""}`}>
+      {/* Continúa la escena de la bienvenida: ondas en el agua y luces que suben */}
+      <span className="portal-water" aria-hidden="true">
+        <span className="portal-ripples"><i /><i /><i /><i /></span>
+        {Array.from({ length: 16 }, (_, index) => <span key={index} className="portal-mote" />)}
+      </span>
       {showSplash && <Splash onDone={() => setShowSplash(false)} />}
 
       <header className="portal-header">
@@ -194,7 +200,7 @@ export default function EditionIntro({ onSelect, lastEdition, greeting, dateLabe
         {EDITIONS.map((item) => <Door key={item.id} item={item} isLast={lastEdition === item.id} onChoose={choose} />)}
       </div>
 
-      <footer className="portal-footer">© {new Date().getFullYear()} Manantial · <strong>@luisniquen</strong></footer>
+      <footer className="portal-footer">© {new Date().getFullYear()} Manantial · <strong>@luisniquen</strong><small>{NVI_NOTICE}</small></footer>
 
       {expanding && <div className={`door-expand tone-${expanding.id}`} style={expandStyle} aria-hidden="true" />}
     </main>

@@ -3,7 +3,7 @@ import AuthScreen from "./AuthScreen.jsx";
 import EditionIntro from "./EditionIntro.jsx";
 import { AdminGroups, AdminUsers, MyGroup } from "./GroupsPanel.jsx";
 import { EDITIONS, loadDevotional } from "./devotionals/index.js";
-import { phraseOfTheDay } from "./phrases.js";
+import { NVI_NOTICE, phraseOfTheDay } from "./phrases.js";
 
 const BOOKS = [
   ["Génesis", 50], ["Éxodo", 40], ["Levítico", 27], ["Números", 36], ["Deuteronomio", 34],
@@ -656,6 +656,7 @@ function App() {
               <div className="hero-copy">
                 <div className="eyebrow light"><span className="eyebrow-line" /> {getGreeting()}{firstName && `, ${firstName}`}</div>
                 <h1>{heroPhrase[0]} <em>{heroPhrase[1]}</em></h1>
+                {heroPhrase[2] && <p className="hero-ref">{heroPhrase[2]} <span>NVI</span></p>}
                 <p className="welcome-date">{formatDate(day)} <span>·</span> Día {day} de tu recorrido por la Biblia</p>
                 <div className="hero-stats">
                   <div><Icon name="flame" size={16} /><strong>{streak}</strong><span>{streak === 1 ? "día seguido" : "días seguidos"}</span></div>
@@ -802,7 +803,7 @@ function App() {
         {section === "grupo" && user.role === "admin" && <AdminGroups onError={setSyncError} />}
         {section === "usuarios" && user.role === "admin" && <AdminUsers />}
         {section === "users" && user.role !== "admin" && <MyGroup user={user} />}
-        <footer className="app-footer">© {new Date().getFullYear()} Manantial · Todos los derechos reservados · <strong>@luisniquen</strong></footer>
+        <footer className="app-footer">© {new Date().getFullYear()} Manantial · Todos los derechos reservados · <strong>@luisniquen</strong><small>{NVI_NOTICE}</small></footer>
       </main>
 
       <nav className="mobile-nav" aria-label="Navegación inferior">
